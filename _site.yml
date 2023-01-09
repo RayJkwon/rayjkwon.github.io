@@ -7,8 +7,6 @@ output_dir: "."
 navbar:
   title: "Ray Kwon"
   left:
-    - text: "About Me"
-      href: aboutme.html
     - text: "Tutorials"
       href: tutorials.html
     - text: "Stat/ML"
