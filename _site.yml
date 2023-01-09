@@ -1,18 +1,22 @@
-name: "John Appleseed"
-title: "John Appleseed"
-pagetitle: "John Appleseed"
+name: "Ray Kwon"
+title: "Ray Kwon"
+pagetitle: "Ray Kwon"
 base_url: https://rayjkwon.github.io/
 google_analytics: "" # e.g. "UA-XXXXXXXXX-1", GA tracking code
 output_dir: "."
 navbar:
-  title: "John Appleseed"
+  title: "Ray Kwon"
   left:
+    - text: "About Me"
+      href: aboutme.html
     - text: "Tutorials"
       href: tutorials.html
     - text: "Stat/ML"
       menu: 
       - text: "Predicting House Prices in Iowa"
         href: stat1.html
+      - text: "Predicting House Prices in Seattle"
+        href: stat2.html
     - text: "DB/SQL"
       menu: 
       - text: "Movie Explorer"

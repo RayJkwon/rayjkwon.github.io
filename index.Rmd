@@ -41,3 +41,5 @@ e.g. 💪 Specialties in analyzing customer-driven data from e-commerce and appl
 + Data visualization: Tableau Software, Power BI
 + Database: SQL, Postgre SQL, MongoDB, Neo4j
 + Cloud Computing: AWS, GCP (BigQuery), Azure
+
+My most representative project is [HERE](https://nbviewer.org/github/ipython/ipython/blob/6.x/examples/IPython%20Kernel/Index.ipynb)
