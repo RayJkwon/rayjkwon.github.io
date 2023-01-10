@@ -428,9 +428,9 @@ city_cluster &lt;- city_demand[c(&quot;family1&quot;, &quot;meal_num1&quot;, &qu
 
 
 #install.packages(&quot;caret&quot;)
-library(caret)
-
-preproc1 = preProcess(city_cluster)
+library(caret)</code></pre>
+<pre><code>## Loading required package: lattice</code></pre>
+<pre class="r"><code>preproc1 = preProcess(city_cluster)
 
 cityClusterNorm = predict(preproc1, city_cluster)</code></pre>
 </div>
