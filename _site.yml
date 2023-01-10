@@ -12,7 +12,7 @@ navbar:
     - text: "Stat/ML"
       menu: 
       - text: "Predicting House Prices in Iowa"
-        href: stat3.html
+        href: stat1.html
       - text: "Predicting House Prices in Seattle"
         href: stat2.html
     - text: "DB/SQL"
