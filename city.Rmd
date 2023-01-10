@@ -1,0 +1,221 @@
+---
+title: "Hotel Customer Analytic(City Hotel)"
+author: "Ray Kwon"
+date: "2022-12-08"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+# 1 Introduction
+
+These are two datasets with Portuguese hotel demand data and each observation represents a hotel booking. One of the hotels is a resort hotel(40,060 observations) and other is a city hotel(79,330 observations).
+
+## 1.1 Problem Statement :
+
+What differentiated marketing strategy can attract the exiting customers ?
+
+## 1.2 Goal:
+
+Segmenting all customers using K-mean clustering and then identifying recommendations for hotels by analyzing customer needs.
+
+```{r setrrthup, include=FALSE}
+#data minig 
+
+library(dplyr)
+
+hotel <- read.csv("hotel_bookings.csv")
+
+unique(hotel$hotel)
+
+city <- filter(hotel, hotel == "City Hotel")
+
+city$meal_num1 <-  ifelse(city$meal == 'BB',1,ifelse(city$meal == 'FB',2,ifelse(city$meal == "HB",3,ifelse(city$meal=='SC',4,0)))) #labels number on meal
+
+city$depo_num1 <- ifelse(city$deposit_type == "No Deposit", 1, ifelse(city$deposit_type == "Refundable", 2, ifelse(city$deposit_type == "Non Refund", 3, 0)))#labels number on deposit type
+
+
+city$family1 <- ifelse(city$children > 0 | city$babies > 0, 1,0)
+
+
+city_demand <- filter(city, adr > 20)
+
+
+```
+
+# 2 Exploratory Data Analysis (EDA)
+
+There are 5 variables to figure out marketing strategy: Family & Meal Plan & Type of deposit & ADR & Paring space
+
+Family: the customers brought their kids ?
+
+\*Accompanied kids: 1 & NO accompanied kids: 0
+
+Meal Plan: what type of meal plan the customers preferred?
+
+\*No plan: 0 & BB(Breakfast and Bed): 1 & FB(Full Board):2 & HB(Half Board): 3 & SC(Self Catering): 4
+
+Type of Deposit: What type of deposit the customers chose ?
+
+-   No deposit: 1 & Refundable: 2 & Non Refund:3
+
+Parking: How many parking spaces were required by customers?
+
+ADR: Average Daily Rate(Dividing room revenue by rooms sold)
+
+### 2.1 How many kids are accompanied by customers? :
+
+About 90% of customers didn't bring children or babies and few customers brought 1 or 2 children
+
+### 2.2 Types of deposit
+
+About 85% of customers chose 1(No Deposit)
+
+### 2.3 Types of Meal plan
+
+About 75% of customers chose 1(Breakfast and beds) and about 13% of customer chose 4(Self-Catering)
+
+### 2.4 Average Daily Rate
+
+Each room generates \$50 to \$100 per a day mostly
+
+```{r sejhgp}
+
+#install.packages("ggplot2")
+library(ggplot2)
+
+ggplot(city_demand, aes(x = children)) +
+  geom_histogram(aes(y = after_stat(count)), binwidth = 1,
+                 colour = "goldenrod2", fill = "goldenrod2")+ labs(y= "Number of customers", x = "2.1 Number of accompanied children")+ggtitle("2.1Number of customers who accompanied children")+theme(plot.title = element_text(hjust = 0.5))
+
+
+ggplot(city_demand, aes(x = babies)) +
+  geom_histogram(aes(y = after_stat(count)), binwidth = 1,
+                 colour = "slateblue2", fill = "slateblue3")+ labs(y= "Number of customers", x = "Number of accompanied babies")+ggtitle("2.1 Number of customers who accompanied babies")+theme(plot.title = element_text(hjust = 0.5))
+
+
+ggplot(city_demand, aes(x = depo_num1)) +
+  geom_histogram(aes(y = after_stat(count)), binwidth = 1,
+                 colour = "aquamarine3", fill = "aquamarine3")+ labs(y= "Number of customers", x = "Type of Deposit")+ggtitle("2.2 Type of Deposit by Customers")+theme(plot.title = element_text(hjust = 0.5))
+
+ggplot(city_demand, aes(x = meal_num1)) +
+  geom_histogram(aes(y = after_stat(count)), binwidth = 1,
+                 colour = "azure3", fill = "azure3")+ labs(y= "Number of customers", x = "Type of Meal Plan")+ggtitle("2.3 Type of Meal Plan by Customers")+theme(plot.title = element_text(hjust = 0.5))
+
+
+ggplot(city_demand, aes(x = adr)) +
+  geom_histogram(aes(y = after_stat(count)), binwidth = 5,
+                 colour = "antiquewhite2", fill = "antiquewhite2")+ labs(y= "Number of customers", x = "Average Daily Rate")+ggtitle("Average Daily Rate by Customers")+theme(plot.title = element_text(hjust = 0.5))+ stat_bin(bins = 10)
+
+```
+
+# 3 Normalization
+
+### Distance of clusters is highly influenced by scale of variables, it is customary to normalize first. In our dataset, all variables are on not same scale(0,1), so normalization is necessary
+
+```{r sjonniitup}
+
+city_demand <- na.omit(city_demand)
+
+city_cluster <- city_demand[c("family1", "meal_num1", "depo_num1", "adr", "required_car_parking_spaces")]
+
+
+#install.packages("caret")
+library(caret)
+
+preproc1 = preProcess(city_cluster)
+
+cityClusterNorm = predict(preproc1, city_cluster)
+```
+
+# 4 Elbow Curve
+
+## 4.1 why we need to use elbow curve ?
+
+We need use elbow curve to figure out what is the optimal number of cluster. The graph looks like elbow shape and we need to find elbow point that is k-value where the elbow gets created. This is because increasing the value of "K" does not reduce WCSS(Within-Cluster Sum of Square)
+
+## 4.2 Optimal number of cluster
+
+We choose the elbow point which is 6. Even though we increasd the k-value, it does not reduce WCSS.
+
+```{r se}
+# elbow curve 
+
+dat.sample2 <- cityClusterNorm[sample(nrow(cityClusterNorm), size = 2000, replace = FALSE), ]
+
+dat.sample3 <- na.omit(dat.sample2)
+
+
+
+
+#install.packages("factoextra")
+library(cluster)
+library(factoextra)
+
+fviz_nbclust(dat.sample3, kmeans, method = "wss")
+```
+
+# 5 Result of K-mean Clustering
+
+## 5.1 Size of Clusters
+
+Cluster1: 29,009 Cluster2: 14,885 Cluster3: 12,852 Cluster4: 14,279 Cluster5: 1,873 Cluster6: 4,995
+
+## 5.2 Insight
+
+### °Cluster6 show the highest average daily rate
+
+### °All clusters chose "No deposit" except cluster 3 that chose "Non refund" option
+
+### °Customers in cluster6 brought their kids
+
+### °Most customers in cluster4 chose Half Board or self-catering, whereas, most customers in rest clusters chose "Breakfast and Bed" option
+
+### °Cluster5 required parking space
+
+```{r sesdfp}
+set.seed(1234)
+cityClusterNorm <- na.omit(cityClusterNorm)
+
+kmeansClustering_city <- kmeans(cityClusterNorm, centers = 6)
+
+table(kmeansClustering_city$cluster)
+
+
+tapply(city_cluster$family1, kmeansClustering_city$cluster, mean)
+tapply(city_cluster$adr, kmeansClustering_city$cluster, mean)
+tapply(city_cluster$depo_num1, kmeansClustering_city$cluster, mean)
+tapply(city_cluster$meal_num1, kmeansClustering_city$cluster, mean)
+tapply(city_cluster$required_car_parking_spaces, kmeansClustering_city$cluster, mean)
+```
+
+```{r ftup}
+
+library(RColorBrewer)
+library(tidyr)
+
+Num_cluster <- c(1:6)
+center1 <- kmeansClustering_city$centers
+
+center_df1 <- data.frame(Num_cluster,center1)
+
+hm.palette <-colorRampPalette(rev(brewer.pal(10, 'RdYlGn')),space='Lab')
+
+center_reshape1 <- gather(center_df1, features, values, family1:required_car_parking_spaces)
+
+heat_map1<- ggplot(data = center_reshape1, aes(x = features, y= Num_cluster, fill = values))+scale_y_continuous(breaks = seq(1, 6, by = 1)) +
+    geom_tile() +
+    coord_equal() +
+    scale_fill_gradientn(colours = hm.palette(90)) +
+    theme_classic()
+
+heat_map1+labs(y= "Cluster", x = "Customer Propensity")+ggtitle("Customer Propensity by Cluster")+theme(plot.title = element_text(hjust = 0.5))+scale_x_discrete(labels=c('ADR', 'Deposit', 'Family',"Meal Plan","Parking"))
+
+
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

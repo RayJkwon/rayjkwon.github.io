@@ -11,9 +11,9 @@
 
 <meta name="author" content="Ray Kwon" />
 
-<meta name="date" content="2023-01-10" />
+<meta name="date" content="2022-12-08" />
 
-<title>Hotel Customer Analytic(Resort)</title>
+<title>Hotel Customer Analytic(City Hotel)</title>
 
 <script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -330,9 +330,9 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Hotel Customer Analytic(Resort)</h1>
+<h1 class="title toc-ignore">Hotel Customer Analytic(City Hotel)</h1>
 <h4 class="author">Ray Kwon</h4>
-<h4 class="date">2023-01-10</h4>
+<h4 class="date">2022-12-08</h4>
 
 </div>
 
@@ -352,24 +352,6 @@ customers ?</p>
 <h2>1.2 Goal:</h2>
 <p>Segmenting all customers using K-mean clustering and then identifying
 recommendations for hotels by analyzing customer needs.</p>
-<pre class="r"><code>#data minig 
-
-library(dplyr)
-
-hotel &lt;- read.csv(&quot;hotel_bookings.csv&quot;)
-
-
-resort &lt;- filter(hotel, hotel == &quot;Resort Hotel&quot;)
-
-resort$meal_num &lt;-  ifelse(resort$meal == &#39;BB&#39;,1,ifelse(resort$meal == &#39;FB&#39;,2,ifelse(resort$meal == &quot;HB&quot;,3,ifelse(resort$meal==&#39;SC&#39;,4,0)))) #labels number on meal
-
-resort$depo_num &lt;- ifelse(resort$deposit_type == &quot;No Deposit&quot;, 1, ifelse(resort$deposit_type == &quot;Refundable&quot;, 2, ifelse(resort$deposit_type == &quot;Non Refund&quot;, 3, 0)))#labels number on deposit type
-
-
-resort$family &lt;- ifelse(resort$children &gt; 0 | resort$babies &gt; 0, 1,0)
-
-
-resort_demand &lt;- filter(resort, adr &gt; 20)</code></pre>
 </div>
 </div>
 <div id="exploratory-data-analysis-eda" class="section level1">
@@ -389,60 +371,74 @@ Meal Plan &amp; Type of deposit &amp; ADR &amp; Paring space</p>
 <p>ADR: Average Daily Rate(Dividing room revenue by rooms sold)</p>
 <div id="how-many-kids-are-accompanied-by-customers"
 class="section level3">
-<h3>2.1 How many kids are accompanied by customers?</h3>
+<h3>2.1 How many kids are accompanied by customers? :</h3>
 <p>About 90% of customers didn’t bring children or babies and few
 customers brought 1 or 2 children</p>
 </div>
 <div id="types-of-deposit" class="section level3">
 <h3>2.2 Types of deposit</h3>
-<p>About 90% of customers chose 1(No Deposit)</p>
+<p>About 85% of customers chose 1(No Deposit)</p>
 </div>
 <div id="types-of-meal-plan" class="section level3">
 <h3>2.3 Types of Meal plan</h3>
-<p>About 70% of customers chose 1(Breakfast and beds) and about 20% of
-customer chose 3(Half Board) that means including two meals</p>
+<p>About 75% of customers chose 1(Breakfast and beds) and about 13% of
+customer chose 4(Self-Catering)</p>
 </div>
 <div id="average-daily-rate" class="section level3">
 <h3>2.4 Average Daily Rate</h3>
 <p>Each room generates $50 to $100 per a day mostly</p>
-<pre class="r"><code># Exploratory Data Analysis(EDA)
-
-
-#install.packages(&quot;ggplot2&quot;)
+<pre class="r"><code>#install.packages(&quot;ggplot2&quot;)
 library(ggplot2)
 
- ggplot(resort_demand, aes(x = children)) +
-  geom_histogram(aes(y = after_stat(count)), binwidth = 5,
-                 colour = &quot;goldenrod2&quot;, fill = &quot;goldenrod2&quot;)+ labs(y= &quot;Number of customers&quot;, x = &quot;1.1 Number of accompanied children&quot;)+ggtitle(&quot;Number of customers who accompanied children&quot;)+theme(plot.title = element_text(hjust = 0.5))</code></pre>
-<p><img src="resort-project_files/figure-html/cas-1.png" width="672" /></p>
-<pre class="r"><code>ggplot(resort_demand, aes(x = babies)) +
+ggplot(city_demand, aes(x = children)) +
+  geom_histogram(aes(y = after_stat(count)), binwidth = 1,
+                 colour = &quot;goldenrod2&quot;, fill = &quot;goldenrod2&quot;)+ labs(y= &quot;Number of customers&quot;, x = &quot;2.1 Number of accompanied children&quot;)+ggtitle(&quot;2.1Number of customers who accompanied children&quot;)+theme(plot.title = element_text(hjust = 0.5))</code></pre>
+<pre><code>## Warning: Removed 1 rows containing non-finite
+## values (`stat_bin()`).</code></pre>
+<p><img src="city_files/figure-html/sejhgp-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(city_demand, aes(x = babies)) +
   geom_histogram(aes(y = after_stat(count)), binwidth = 1,
                  colour = &quot;slateblue2&quot;, fill = &quot;slateblue3&quot;)+ labs(y= &quot;Number of customers&quot;, x = &quot;Number of accompanied babies&quot;)+ggtitle(&quot;2.1 Number of customers who accompanied babies&quot;)+theme(plot.title = element_text(hjust = 0.5))</code></pre>
-<p><img src="resort-project_files/figure-html/cas-2.png" width="672" /></p>
-<pre class="r"><code> ggplot(resort_demand, aes(x = depo_num)) +
+<p><img src="city_files/figure-html/sejhgp-2.png" width="672" /></p>
+<pre class="r"><code>ggplot(city_demand, aes(x = depo_num1)) +
   geom_histogram(aes(y = after_stat(count)), binwidth = 1,
                  colour = &quot;aquamarine3&quot;, fill = &quot;aquamarine3&quot;)+ labs(y= &quot;Number of customers&quot;, x = &quot;Type of Deposit&quot;)+ggtitle(&quot;2.2 Type of Deposit by Customers&quot;)+theme(plot.title = element_text(hjust = 0.5))</code></pre>
-<p><img src="resort-project_files/figure-html/cas-3.png" width="672" /></p>
-<pre class="r"><code>ggplot(resort_demand, aes(x = meal_num)) +
+<p><img src="city_files/figure-html/sejhgp-3.png" width="672" /></p>
+<pre class="r"><code>ggplot(city_demand, aes(x = meal_num1)) +
   geom_histogram(aes(y = after_stat(count)), binwidth = 1,
                  colour = &quot;azure3&quot;, fill = &quot;azure3&quot;)+ labs(y= &quot;Number of customers&quot;, x = &quot;Type of Meal Plan&quot;)+ggtitle(&quot;2.3 Type of Meal Plan by Customers&quot;)+theme(plot.title = element_text(hjust = 0.5))</code></pre>
-<p><img src="resort-project_files/figure-html/cas-4.png" width="672" /></p>
-<pre class="r"><code> ggplot(resort_demand, aes(x = adr)) +
+<p><img src="city_files/figure-html/sejhgp-4.png" width="672" /></p>
+<pre class="r"><code>ggplot(city_demand, aes(x = adr)) +
   geom_histogram(aes(y = after_stat(count)), binwidth = 5,
-                 colour = &quot;antiquewhite2&quot;, fill = &quot;antiquewhite2&quot;)+ labs(y= &quot;Number of customers&quot;, x = &quot;Average Daily Rate&quot;)+ggtitle(&quot;2.4 Average Daily Rate by Customers&quot;)+theme(plot.title = element_text(hjust = 0.5))+ stat_bin(bins = 10)</code></pre>
-<p><img src="resort-project_files/figure-html/cas-5.png" width="672" /></p>
+                 colour = &quot;antiquewhite2&quot;, fill = &quot;antiquewhite2&quot;)+ labs(y= &quot;Number of customers&quot;, x = &quot;Average Daily Rate&quot;)+ggtitle(&quot;Average Daily Rate by Customers&quot;)+theme(plot.title = element_text(hjust = 0.5))+ stat_bin(bins = 10)</code></pre>
+<p><img src="city_files/figure-html/sejhgp-5.png" width="672" /></p>
 </div>
-<div id="normalization" class="section level2">
-<h2>2.5 Normalization</h2>
-<p>Distance of clusters is highly influenced by scale of variables, it
+</div>
+<div id="normalization" class="section level1">
+<h1>3 Normalization</h1>
+<div
+id="distance-of-clusters-is-highly-influenced-by-scale-of-variables-it-is-customary-to-normalize-first.-in-our-dataset-all-variables-are-on-not-same-scale01-so-normalization-is-necessary"
+class="section level3">
+<h3>Distance of clusters is highly influenced by scale of variables, it
 is customary to normalize first. In our dataset, all variables are on
-not same scale(0,1), so normalization is necessary:</p>
+not same scale(0,1), so normalization is necessary</h3>
+<pre class="r"><code>city_demand &lt;- na.omit(city_demand)
+
+city_cluster &lt;- city_demand[c(&quot;family1&quot;, &quot;meal_num1&quot;, &quot;depo_num1&quot;, &quot;adr&quot;, &quot;required_car_parking_spaces&quot;)]
+
+
+#install.packages(&quot;caret&quot;)
+library(caret)
+
+preproc1 = preProcess(city_cluster)
+
+cityClusterNorm = predict(preproc1, city_cluster)</code></pre>
 </div>
 </div>
 <div id="elbow-curve" class="section level1">
-<h1>3 Elbow Curve</h1>
+<h1>4 Elbow Curve</h1>
 <div id="why-we-need-to-use-elbow-curve" class="section level2">
-<h2>3.1 why we need to use elbow curve ?</h2>
+<h2>4.1 why we need to use elbow curve ?</h2>
 <p>We need use elbow curve to figure out what is the optimal number of
 cluster. The graph looks like elbow shape and we need to find elbow
 point that is k-value where the elbow gets created. This is because
@@ -450,71 +446,102 @@ increasing the value of “K” does not reduce WCSS(Within-Cluster Sum of
 Square)</p>
 </div>
 <div id="optimal-number-of-cluster" class="section level2">
-<h2>3.2 Optimal number of cluster</h2>
-<p>We choose the elbow point which is 6. Even though we increased the
-k-value, it does not reduce WCSS</p>
-<p><img src="resort-project_files/figure-html/preb-1.png" width="672" /></p>
+<h2>4.2 Optimal number of cluster</h2>
+<p>We choose the elbow point which is 6. Even though we increasd the
+k-value, it does not reduce WCSS.</p>
+<pre class="r"><code># elbow curve 
+
+dat.sample2 &lt;- cityClusterNorm[sample(nrow(cityClusterNorm), size = 2000, replace = FALSE), ]
+
+dat.sample3 &lt;- na.omit(dat.sample2)
+
+
+
+
+#install.packages(&quot;factoextra&quot;)
+library(cluster)
+library(factoextra)</code></pre>
+<pre><code>## Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa</code></pre>
+<pre class="r"><code>fviz_nbclust(dat.sample3, kmeans, method = &quot;wss&quot;)</code></pre>
+<p><img src="city_files/figure-html/se-1.png" width="672" /></p>
 </div>
 </div>
 <div id="result-of-k-mean-clustering" class="section level1">
-<h1>4 Result of K-mean Clustering</h1>
+<h1>5 Result of K-mean Clustering</h1>
 <div id="size-of-clusters" class="section level2">
-<h2>4.1 Size of Clusters</h2>
-<p>Cluster1: 3,868 Cluster2: 4,627 Cluster3: 5,413 Cluster4: 17,487
-Cluster5: 5,892 Cluster6: 1,892</p>
+<h2>5.1 Size of Clusters</h2>
+<p>Cluster1: 29,009 Cluster2: 14,885 Cluster3: 12,852 Cluster4: 14,279
+Cluster5: 1,873 Cluster6: 4,995</p>
 </div>
 <div id="insight" class="section level2">
-<h2>4.1 Insight</h2>
-<div id="cluster1-cluster3-show-the-highest-average-daily-rate"
+<h2>5.2 Insight</h2>
+<div id="cluster6-show-the-highest-average-daily-rate"
 class="section level3">
-<h3>°Cluster1 &amp; Cluster3 show the highest average daily rate</h3>
+<h3>°Cluster6 show the highest average daily rate</h3>
 </div>
 <div
-id="all-clusters-chose-no-deposit-except-cluster-6-that-chose-non-refund-option"
+id="all-clusters-chose-no-deposit-except-cluster-3-that-chose-non-refund-option"
 class="section level3">
-<h3>°All clusters chose “No deposit” except cluster 6 that chose “Non
+<h3>°All clusters chose “No deposit” except cluster 3 that chose “Non
 refund” option</h3>
 </div>
-<div id="customers-in-cluster1-brought-their-kids"
+<div id="customers-in-cluster6-brought-their-kids"
 class="section level3">
-<h3>°Customers in cluster1 brought their kids</h3>
+<h3>°Customers in cluster6 brought their kids</h3>
 </div>
 <div
-id="most-customers-in-cluster5-chose-half-board-whereas-most-customers-in-rest-clusters-chose-breakfast-and-bed-option"
+id="most-customers-in-cluster4-chose-half-board-or-self-catering-whereas-most-customers-in-rest-clusters-chose-breakfast-and-bed-option"
 class="section level3">
-<h3>°Most customers in cluster5 chose Half Board, whereas, most
-customers in rest clusters chose “Breakfast and Bed” option</h3>
+<h3>°Most customers in cluster4 chose Half Board or self-catering,
+whereas, most customers in rest clusters chose “Breakfast and Bed”
+option</h3>
 </div>
-<div id="cluster2-required-parking-space" class="section level3">
-<h3>°Cluster2 required parking space</h3>
-<pre><code>##       family   meal_num   depo_num         adr required_car_parking_spaces
-## 1  3.0147988  0.1397502 -0.2196305  1.09393220                   0.1735987
-## 2 -0.3280724 -0.1281032 -0.2119857  0.08157423                   2.4684493
-## 3 -0.3316886 -0.4902237 -0.2190932  1.10299525                  -0.3940615
-## 4 -0.3316886 -0.5107956 -0.2208826 -0.62542327                  -0.3951103
-## 5 -0.3316886  1.8924213 -0.2200606  0.21926567                  -0.3951103
-## 6 -0.3243699  0.2667564  4.4699351 -0.51089310                  -0.3951103</code></pre>
-<pre><code>##       family   meal_num   depo_num         adr required_car_parking_spaces
-## 1  3.0147988  0.1397502 -0.2196305  1.09393220                   0.1735987
-## 2 -0.3280724 -0.1281032 -0.2119857  0.08157423                   2.4684493
-## 3 -0.3316886 -0.4902237 -0.2190932  1.10299525                  -0.3940615
-## 4 -0.3316886 -0.5107956 -0.2208826 -0.62542327                  -0.3951103
-## 5 -0.3316886  1.8924213 -0.2200606  0.21926567                  -0.3951103
-## 6 -0.3243699  0.2667564  4.4699351 -0.51089310                  -0.3951103</code></pre>
+<div id="cluster5-required-parking-space" class="section level3">
+<h3>°Cluster5 required parking space</h3>
+<pre class="r"><code>set.seed(1234)
+cityClusterNorm &lt;- na.omit(cityClusterNorm)
+
+kmeansClustering_city &lt;- kmeans(cityClusterNorm, centers = 6)
+
+table(kmeansClustering_city$cluster)</code></pre>
 <pre><code>## 
 ##     1     2     3     4     5     6 
-##  3868  4627  5413 17487  5892  1829</code></pre>
-<pre><code>##           1           2           3           4           5           6 
-## 1.000000000 0.001080614 0.000000000 0.000000000 0.000000000 0.002186987</code></pre>
+## 29009 14885 12852 14279  1873  4995</code></pre>
+<pre class="r"><code>tapply(city_cluster$family1, kmeansClustering_city$cluster, mean)</code></pre>
 <pre><code>##         1         2         3         4         5         6 
-## 163.30238 102.13273 163.85000  59.41386 110.45245  66.33411</code></pre>
+## 0.0000000 0.0000000 0.0000000 0.0000000 0.1628404 0.9997998</code></pre>
+<pre class="r"><code>tapply(city_cluster$adr, kmeansClustering_city$cluster, mean)</code></pre>
+<pre><code>##         1         2         3         4         5         6 
+##  85.91758 146.89828  92.70334 104.13065 125.17374 152.12067</code></pre>
+<pre class="r"><code>tapply(city_cluster$depo_num1, kmeansClustering_city$cluster, mean)</code></pre>
 <pre><code>##        1        2        3        4        5        6 
-## 1.000517 1.003674 1.000739 1.000000 1.000339 2.937124</code></pre>
-<pre><code>##         1         2         3         4         5         6 
-## 1.5144778 1.2896045 0.9855902 0.9683193 2.9859131 1.6211044</code></pre>
-<pre><code>##            1            2            3            4            5            6 
-## 0.2003619442 1.0088610331 0.0003694809 0.0000000000 0.0000000000 0.0000000000</code></pre>
-<p><img src="resort-project_files/figure-html/pressdfsdfe-1.png" width="672" /></p>
+## 1.000207 1.001209 2.999844 1.000280 1.000534 1.001401</code></pre>
+<pre class="r"><code>tapply(city_cluster$meal_num1, kmeansClustering_city$cluster, mean)</code></pre>
+<pre><code>##        1        2        3        4        5        6 
+## 1.001207 1.046019 1.189698 3.700399 1.470368 1.249650</code></pre>
+<pre class="r"><code>tapply(city_cluster$required_car_parking_spaces, kmeansClustering_city$cluster, mean)</code></pre>
+<pre><code>##        1        2        3        4        5        6 
+## 0.000000 0.000000 0.000000 0.000000 1.003737 0.000000</code></pre>
+<pre class="r"><code>library(RColorBrewer)
+library(tidyr)
+
+Num_cluster &lt;- c(1:6)
+center1 &lt;- kmeansClustering_city$centers
+
+center_df1 &lt;- data.frame(Num_cluster,center1)
+
+hm.palette &lt;-colorRampPalette(rev(brewer.pal(10, &#39;RdYlGn&#39;)),space=&#39;Lab&#39;)
+
+center_reshape1 &lt;- gather(center_df1, features, values, family1:required_car_parking_spaces)
+
+heat_map1&lt;- ggplot(data = center_reshape1, aes(x = features, y= Num_cluster, fill = values))+scale_y_continuous(breaks = seq(1, 6, by = 1)) +
+    geom_tile() +
+    coord_equal() +
+    scale_fill_gradientn(colours = hm.palette(90)) +
+    theme_classic()
+
+heat_map1+labs(y= &quot;Cluster&quot;, x = &quot;Customer Propensity&quot;)+ggtitle(&quot;Customer Propensity by Cluster&quot;)+theme(plot.title = element_text(hjust = 0.5))+scale_x_discrete(labels=c(&#39;ADR&#39;, &#39;Deposit&#39;, &#39;Family&#39;,&quot;Meal Plan&quot;,&quot;Parking&quot;))</code></pre>
+<p><img src="city_files/figure-html/ftup-1.png" width="672" /></p>
 <p>Note that the <code>echo = FALSE</code> parameter was added to the
 code chunk to prevent printing of the R code that generated the
 plot.</p>

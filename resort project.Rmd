@@ -50,7 +50,7 @@ Family: the customers brought their kids ?
 
 \*Accompanied kids: 1 & NO accompanied kids: 0
 
-Meal Plan: what type of meal plan the customers prefered?
+Meal Plan: what type of meal plan the customers preferred?
 
 \*No plan: 0 & BB(Breakfast and Bed): 1 & FB(Full Board):2 & HB(Half Board): 3 & SC(Self Catering): 4
 

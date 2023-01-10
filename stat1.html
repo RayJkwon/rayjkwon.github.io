@@ -417,11 +417,10 @@ div.tocify {
 <p><link rel="stylesheet" href="styles.css" type="text/css">
 <link rel="stylesheet" href="site_libs/academicons-1.9.1/css/academicons.min.css"/></p>
 <p><br><br><br></p>
-<div id="predicting-house-prices-in-iowa" class="section level2">
-<h2><strong>Predicting House Prices in Iowa</strong></h2>
-<p><img src="https://img.shields.io/badge/Using-Python-blue" /> <img
-src="https://img.shields.io/badge/-LASSO-red" /> <img
-src="https://img.shields.io/badge/-XGBoost-success" /></p>
+<div id="hotel-customer-analytic" class="section level2">
+<h2><strong>Hotel Customer Analytic</strong></h2>
+<p><img src="https://img.shields.io/badge/Using-R-blue" /> <img
+src="https://img.shields.io/badge/-KmeanCluster-red" /></p>
 <p><br></p>
 <p>🚨<strong>THIS IS A FICTIONAL PROJECT MEANT AS AN EXAMPLE FOR THE
 STEPBYSTAT COMMUNITY.</strong></p>
@@ -432,32 +431,29 @@ STEPBYSTAT COMMUNITY.</strong></p>
 <img src="images/predict_houseprice.png" style="width:80%; border:0px solid; margin-right: 20px" align="center">
 </p>
 <p align="center">
-[Fig. LASSO regression features by importance]
+[Fig. K-Mean Clustering]
 </p>
 <p><br></p>
 <p><br><br></p>
 </div>
 <div id="goal" class="section level3">
 <h3>2. Goal</h3>
-<p>To predict the final price of each home using 79 explanatory
-variables describing (almost) every aspect of residential homes in Ames,
-Iowa.</p>
+<p>Segmenting all customers using K-mean clustering and then identifying
+recommendations for hotels by analyzing customer needs.</p>
 <p><br></p>
 </div>
 <div id="methodology-summary" class="section level3">
 <h3>3. Methodology &amp; Summary</h3>
 <ul>
-<li>LASSO regressions showed the best performance with a cross
-validation RMSE-score of 0.1121. Although there is a lot of
-multicollinearity among the variables, LASSO regression include feature
-selection; it does not select a substantial number of the available
-variables in its model, as it is supposed to do.</li>
-<li>The XGBoost model also performs very well with a cross validation
-RMSE of 0.1162.</li>
-<li>As those two algorithms are very different, averaging predictions is
-likely to improve the predictions. As the Lasso cross validated RMSE is
-better than XGBoost’s CV score, I decided to weight the Lasso results
-double.</li>
+<li>These are two datasets with Portuguese hotel demand data and each
+observation represents a hotel booking. One of the hotels is a resort
+hotel(40,060 observations) and other is a city hotel(79,330
+observations).</li>
+<li>Established 6 marketing strategies to attract different customer
+groups for two hotels in Portugal by segmenting 120,000 customers using
+k-means clustering with R programming</li>
+<li>As a result, we identified recommendations for hotels by analyzing
+customer needs, for example, parking and meal plans</li>
 </ul>
 <p><br></p>
 </div>
@@ -466,7 +462,10 @@ double.</li>
 <p>Please</p>
 <p>click <a
 href="file:///C:/Users/junhy/Documents/Github/rayjkwon.github.io/resort-project.html">HERE</a>
-for the analysis report and code.</p>
+for the resort analysis report and code.</p>
+<p>click <a
+href="file:///C:/Users/junhy/Documents/Github/rayjkwon.github.io/city.html">HERE</a>
+for the city hotel analysis report and code.</p>
 <p><br></p>
 </div>
 </div>

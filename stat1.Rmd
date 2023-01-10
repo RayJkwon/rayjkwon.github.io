@@ -14,11 +14,11 @@ output:
 
 <br><br><br>
 
-## **Predicting House Prices in Iowa**
+## **Hotel Customer Analytic**
 
-![](https://img.shields.io/badge/Using-Python-blue)
-![](https://img.shields.io/badge/-LASSO-red)
-![](https://img.shields.io/badge/-XGBoost-success)
+![](https://img.shields.io/badge/Using-R-blue)
+![](https://img.shields.io/badge/-KmeanCluster-red)
+
 
 <br>
 
@@ -32,7 +32,7 @@ output:
 <img src="images/predict_houseprice.png" style="width:80%; border:0px solid; margin-right: 20px" align="center">
 </p>
 <p align="center">
-[Fig. LASSO regression features by importance]
+[Fig. K-Mean Clustering]
 </p>
 
 
@@ -41,15 +41,15 @@ output:
 <br><br>
 
 ### 2. Goal
-To predict the final price of each home using 79 explanatory variables describing (almost) every aspect of residential homes in Ames, Iowa.
+Segmenting all customers using K-mean clustering and then identifying recommendations for hotels by analyzing customer needs.
 
 <br>
 
 ### 3. Methodology & Summary
 
-  + LASSO regressions showed the best performance with a cross validation RMSE-score of 0.1121. Although there is a lot of multicollinearity among the variables, LASSO regression include feature selection; it does not select a substantial number of the available variables in its model, as it is supposed to do.
-  + The XGBoost model also performs very well with a cross validation RMSE of 0.1162.
-  + As those two algorithms are very different, averaging predictions is likely to improve the predictions. As the Lasso cross validated RMSE is better than XGBoost's CV score, I decided to weight the Lasso results double.
+  + These are two datasets with Portuguese hotel demand data and each observation represents a hotel booking. One of the hotels is a resort hotel(40,060 observations) and other is a city hotel(79,330 observations).
+  + Established 6 marketing strategies to attract different customer groups for two hotels in Portugal by  segmenting 120,000 customers using k-means clustering with R programming 
+  + As a result, we identified recommendations for hotels by analyzing customer needs, for example, parking and meal plans
 
 <br>
 
@@ -57,7 +57,9 @@ To predict the final price of each home using 79 explanatory variables describin
 
 Please 
 
-click [HERE](file:///C:/Users/junhy/Documents/Github/rayjkwon.github.io/resort-project.html) for the  analysis report and code.
+click [HERE](file:///C:/Users/junhy/Documents/Github/rayjkwon.github.io/resort-project.html) for the resort analysis report and code.
+
+click [HERE](file:///C:/Users/junhy/Documents/Github/rayjkwon.github.io/city.html) for the city hotel analysis report and code.
 
 <br>
 
