@@ -1,0 +1,99 @@
+---
+title: "Resort Project"
+author: "Ray Kwon"
+date: "2023-01-09"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+
+#data minig 
+
+getwd()
+
+library(dplyr)
+
+hotel <- read.csv("hotel_bookings.csv")
+
+resort <- filter(hotel, hotel == "Resort Hotel")
+
+resort$meal_num <-  ifelse(resort$meal == 'BB',1,ifelse(resort$meal == 'FB',2,ifelse(resort$meal == "HB",3,ifelse(resort$meal=='SC',4,0)))) #labels number on meal
+
+resort$depo_num <- ifelse(resort$deposit_type == "No Deposit", 1, ifelse(resort$deposit_type == "Refundable", 2, ifelse(resort$deposit_type == "Non Refund", 3, 0)))#labels number on deposit type
+
+
+resort$family <- ifelse(resort$children > 0 | resort$babies > 0, 1,0)
+
+
+resort_demand <- filter(resort, adr > 20)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r preure, echo=FALSE}
+# Exploratory Data Analysis(EDA)
+
+#install.packages("ggplot2")
+library(ggplot2)
+
+ggplot(resort_demand, aes(x = children)) +
+  geom_histogram(aes(y = after_stat(count)), binwidth = 5,
+                 colour = "goldenrod2", fill = "goldenrod2")+ labs(y= "Number of customers", x = "1.1 Number of accompanied children")+ggtitle("Number of customers who accompanied children")+theme(plot.title = element_text(hjust = 0.5))
+
+
+ggplot(resort_demand, aes(x = babies)) +
+  geom_histogram(aes(y = after_stat(count)), binwidth = 1,
+                 colour = "slateblue2", fill = "slateblue3")+ labs(y= "Number of customers", x = "Number of accompanied babies")+ggtitle("2.1 Number of customers who accompanied babies")+theme(plot.title = element_text(hjust = 0.5))
+
+
+ggplot(resort_cluster, aes(x = depo_num)) +
+  geom_histogram(aes(y = after_stat(count)), binwidth = 1,
+                 colour = "aquamarine3", fill = "aquamarine3")+ labs(y= "Number of customers", x = "Type of Deposit")+ggtitle("2.2 Type of Deposit by Customers")+theme(plot.title = element_text(hjust = 0.5))
+
+ggplot(resort_cluster, aes(x = meal_num)) +
+  geom_histogram(aes(y = after_stat(count)), binwidth = 1,
+                 colour = "azure3", fill = "azure3")+ labs(y= "Number of customers", x = "Type of Meal Plan")+ggtitle("2.3 Type of Meal Plan by Customers")+theme(plot.title = element_text(hjust = 0.5))
+
+
+ggplot(resort_demand, aes(x = adr)) +
+  geom_histogram(aes(y = after_stat(count)), binwidth = 5,
+                 colour = "antiquewhite2", fill = "antiquewhite2")+ labs(y= "Number of customers", x = "Average Daily Rate")+ggtitle("2.4 Average Daily Rate by Customers")+theme(plot.title = element_text(hjust = 0.5))+ stat_bin(bins = 10)
+```
+
+
+```{r pr, echo=FALSE}
+#normalization
+
+resort_cluster <- resort_demand[c("family", "meal_num", "depo_num", "adr", "required_car_parking_spaces")]
+
+
+#install.packages("caret")
+library(caret)
+
+preproc = preProcess(resort_cluster)
+
+resortClusterNorm = predict(preproc, resort_cluster)
+```
+
+
+```{r pressure, echo=FALSE}
+
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
