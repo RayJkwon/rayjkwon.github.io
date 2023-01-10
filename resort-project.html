@@ -354,16 +354,9 @@ customers ?</p>
 recommendations for hotels by analyzing customer needs.</p>
 <pre class="r"><code>#data minig 
 
-library(dplyr)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>hotel &lt;- read.csv(&quot;hotel_bookings.csv&quot;)
+library(dplyr)
+
+hotel &lt;- read.csv(&quot;hotel_bookings.csv&quot;)
 
 
 resort &lt;- filter(hotel, hotel == &quot;Resort Hotel&quot;)
@@ -444,7 +437,6 @@ library(ggplot2)
 <p>Distance of clusters is highly influenced by scale of variables, it
 is customary to normalize first. In our dataset, all variables are on
 not same scale(0,1), so normalization is necessary:</p>
-<pre><code>## Loading required package: lattice</code></pre>
 </div>
 </div>
 <div id="elbow-curve" class="section level1">

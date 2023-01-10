@@ -9,14 +9,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Ray Kwon" />
 
+<meta name="date" content="2023-01-09" />
 
-<title>Stat1</title>
+<title>Resort Project</title>
 
 <script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -29,9 +31,6 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -63,7 +62,6 @@ if (window.hljs) {
 
 
 
-<link rel="stylesheet" href="styles.css" type="text/css" />
 
 
 
@@ -225,75 +223,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-.tocify-subheader {
-  display: inline;
-}
-.tocify-subheader .tocify-item {
-  font-size: 0.95em;
-}
-
-</style>
-
-
 
 </head>
 
@@ -301,16 +230,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -410,76 +329,62 @@ div.tocify {
 
 
 
+<h1 class="title toc-ignore">Resort Project</h1>
+<h4 class="author">Ray Kwon</h4>
+<h4 class="date">2023-01-09</h4>
 
 </div>
 
 
-<p><link rel="stylesheet" href="styles.css" type="text/css">
-<link rel="stylesheet" href="site_libs/academicons-1.9.1/css/academicons.min.css"/></p>
-<p><br><br><br></p>
-<div id="predicting-house-prices-in-iowa" class="section level2">
-<h2><strong>Predicting House Prices in Iowa</strong></h2>
-<p><img src="https://img.shields.io/badge/Using-Python-blue" /> <img
-src="https://img.shields.io/badge/-LASSO-red" /> <img
-src="https://img.shields.io/badge/-XGBoost-success" /></p>
-<p><br></p>
-<p>🚨<strong>THIS IS A FICTIONAL PROJECT MEANT AS AN EXAMPLE FOR THE
-STEPBYSTAT COMMUNITY.</strong></p>
-<p><br><br><br></p>
-<div id="figure" class="section level3">
-<h3>1. Figure</h3>
-<p align="center">
-<img src="images/predict_houseprice.png" style="width:80%; border:0px solid; margin-right: 20px" align="center">
-</p>
-<p align="center">
-[Fig. LASSO regression features by importance]
-</p>
-<p><br></p>
-<p><br><br></p>
+<div id="r-markdown" class="section level2">
+<h2>R Markdown</h2>
+<p>This is an R Markdown document. Markdown is a simple formatting
+syntax for authoring HTML, PDF, and MS Word documents. For more details
+on using R Markdown see <a href="http://rmarkdown.rstudio.com"
+class="uri">http://rmarkdown.rstudio.com</a>.</p>
+<p>When you click the <strong>Knit</strong> button a document will be
+generated that includes both content as well as the output of any
+embedded R code chunks within the document. You can embed an R code
+chunk like this:</p>
+<pre class="r"><code>summary(cars)</code></pre>
+<pre><code>##      speed           dist       
+##  Min.   : 4.0   Min.   :  2.00  
+##  1st Qu.:12.0   1st Qu.: 26.00  
+##  Median :15.0   Median : 36.00  
+##  Mean   :15.4   Mean   : 42.98  
+##  3rd Qu.:19.0   3rd Qu.: 56.00  
+##  Max.   :25.0   Max.   :120.00</code></pre>
+<pre class="r"><code>#data minig 
+
+getwd()</code></pre>
+<pre><code>## [1] &quot;C:/Users/junhy/Documents/Github/rayjkwon.github.io&quot;</code></pre>
+<pre class="r"><code>library(dplyr)
+
+hotel &lt;- read.csv(&quot;hotel_bookings.csv&quot;)
+
+resort &lt;- filter(hotel, hotel == &quot;Resort Hotel&quot;)
+
+resort$meal_num &lt;-  ifelse(resort$meal == &#39;BB&#39;,1,ifelse(resort$meal == &#39;FB&#39;,2,ifelse(resort$meal == &quot;HB&quot;,3,ifelse(resort$meal==&#39;SC&#39;,4,0)))) #labels number on meal
+
+resort$depo_num &lt;- ifelse(resort$deposit_type == &quot;No Deposit&quot;, 1, ifelse(resort$deposit_type == &quot;Refundable&quot;, 2, ifelse(resort$deposit_type == &quot;Non Refund&quot;, 3, 0)))#labels number on deposit type
+
+
+resort$family &lt;- ifelse(resort$children &gt; 0 | resort$babies &gt; 0, 1,0)
+
+
+resort_demand &lt;- filter(resort, adr &gt; 20)</code></pre>
 </div>
-<div id="goal" class="section level3">
-<h3>2. Goal</h3>
-<p>To predict the final price of each home using 79 explanatory
-variables describing (almost) every aspect of residential homes in Ames,
-Iowa.</p>
-<p><br></p>
-</div>
-<div id="methodology-summary" class="section level3">
-<h3>3. Methodology &amp; Summary</h3>
-<ul>
-<li>LASSO regressions showed the best performance with a cross
-validation RMSE-score of 0.1121. Although there is a lot of
-multicollinearity among the variables, LASSO regression include feature
-selection; it does not select a substantial number of the available
-variables in its model, as it is supposed to do.</li>
-<li>The XGBoost model also performs very well with a cross validation
-RMSE of 0.1162.</li>
-<li>As those two algorithms are very different, averaging predictions is
-likely to improve the predictions. As the Lasso cross validated RMSE is
-better than XGBoost’s CV score, I decided to weight the Lasso results
-double.</li>
-</ul>
-<p><br></p>
-</div>
-<div id="code" class="section level3">
-<h3>4. Code</h3>
-<p>Please</p>
-<p>click <a
-href="file:///C:/Users/junhy/Documents/Github/rayjkwon.github.io/resort-project.html">HERE</a>
-for the analysis report and code.</p>
-<p><br></p>
-</div>
+<div id="including-plots" class="section level2">
+<h2>Including Plots</h2>
+<p>You can also embed plots, for example:</p>
+<p><img src="adsee_files/figure-html/preure-1.png" width="672" /><img src="adsee_files/figure-html/preure-2.png" width="672" /><img src="adsee_files/figure-html/preure-3.png" width="672" /><img src="adsee_files/figure-html/preure-4.png" width="672" /><img src="adsee_files/figure-html/preure-5.png" width="672" /></p>
+<p>Note that the <code>echo = FALSE</code> parameter was added to the
+code chunk to prevent printing of the R code that generated the
+plot.</p>
 </div>
 
 
-<br><br>
-<footer>
-  <p class="copyright text-muted" align="center">Copyright &copy; 2022 John Appleseed</p>
-</footer>
 
-
-</div>
-</div>
 
 </div>
 
@@ -512,35 +417,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3,h4,h5",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = false;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

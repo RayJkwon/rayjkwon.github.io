@@ -55,7 +55,9 @@ To predict the final price of each home using 79 explanatory variables describin
 
 ### 4. Code
 
-Please click [HERE](file:///C:/Users/junhy/Documents/Github/rayjkwon.github.io/resort-project.html) for the analysis report and code.
+Please 
+
+click [HERE](file:///C:/Users/junhy/Documents/Github/rayjkwon.github.io/resort-project.html) for the  analysis report and code.
 
 <br>
 

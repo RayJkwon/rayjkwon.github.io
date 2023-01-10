@@ -9,14 +9,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Ray Kwon" />
 
+<meta name="date" content="2023-01-09" />
 
-<title>Stat1</title>
+<title>Untitled</title>
 
 <script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -29,9 +31,6 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -63,7 +62,6 @@ if (window.hljs) {
 
 
 
-<link rel="stylesheet" href="styles.css" type="text/css" />
 
 
 
@@ -225,75 +223,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-.tocify-subheader {
-  display: inline;
-}
-.tocify-subheader .tocify-item {
-  font-size: 0.95em;
-}
-
-</style>
-
-
 
 </head>
 
@@ -301,16 +230,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -410,76 +329,182 @@ div.tocify {
 
 
 
+<h1 class="title toc-ignore">Untitled</h1>
+<h4 class="author">Ray Kwon</h4>
+<h4 class="date">2023-01-09</h4>
 
 </div>
 
 
-<p><link rel="stylesheet" href="styles.css" type="text/css">
-<link rel="stylesheet" href="site_libs/academicons-1.9.1/css/academicons.min.css"/></p>
-<p><br><br><br></p>
-<div id="predicting-house-prices-in-iowa" class="section level2">
-<h2><strong>Predicting House Prices in Iowa</strong></h2>
-<p><img src="https://img.shields.io/badge/Using-Python-blue" /> <img
-src="https://img.shields.io/badge/-LASSO-red" /> <img
-src="https://img.shields.io/badge/-XGBoost-success" /></p>
-<p><br></p>
-<p>🚨<strong>THIS IS A FICTIONAL PROJECT MEANT AS AN EXAMPLE FOR THE
-STEPBYSTAT COMMUNITY.</strong></p>
-<p><br><br><br></p>
-<div id="figure" class="section level3">
-<h3>1. Figure</h3>
-<p align="center">
-<img src="images/predict_houseprice.png" style="width:80%; border:0px solid; margin-right: 20px" align="center">
-</p>
-<p align="center">
-[Fig. LASSO regression features by importance]
-</p>
-<p><br></p>
-<p><br><br></p>
+<div id="introduction" class="section level1">
+<h1>1 Introduction</h1>
+<p>These are two datasets with Portuguese hotel demand data and each
+observation represents a hotel booking. One of the hotels is a resort
+hotel(40,060 observations) and other is a city hotel(79,330
+observations).</p>
+<div id="problem-statement" class="section level2">
+<h2>1.1 Problem Statement :</h2>
+<p>What differentiated marketing strategy can attract the exiting
+customers ?</p>
 </div>
-<div id="goal" class="section level3">
-<h3>2. Goal</h3>
-<p>To predict the final price of each home using 79 explanatory
-variables describing (almost) every aspect of residential homes in Ames,
-Iowa.</p>
-<p><br></p>
+<div id="goal" class="section level2">
+<h2>1.2 Goal:</h2>
+<p>Segmenting all customers using K-mean clustering and then identifying
+recommendations for hotels by analyzing customer needs.</p>
+<pre class="r"><code>summary(cars)</code></pre>
+<pre><code>##      speed           dist       
+##  Min.   : 4.0   Min.   :  2.00  
+##  1st Qu.:12.0   1st Qu.: 26.00  
+##  Median :15.0   Median : 36.00  
+##  Mean   :15.4   Mean   : 42.98  
+##  3rd Qu.:19.0   3rd Qu.: 56.00  
+##  Max.   :25.0   Max.   :120.00</code></pre>
+<pre class="r"><code>#data minig 
+
+library(dplyr)
+
+hotel &lt;- read.csv(&quot;hotel_bookings.csv&quot;)
+
+
+resort &lt;- filter(hotel, hotel == &quot;Resort Hotel&quot;)
+
+resort$meal_num &lt;-  ifelse(resort$meal == &#39;BB&#39;,1,ifelse(resort$meal == &#39;FB&#39;,2,ifelse(resort$meal == &quot;HB&quot;,3,ifelse(resort$meal==&#39;SC&#39;,4,0)))) #labels number on meal
+
+resort$depo_num &lt;- ifelse(resort$deposit_type == &quot;No Deposit&quot;, 1, ifelse(resort$deposit_type == &quot;Refundable&quot;, 2, ifelse(resort$deposit_type == &quot;Non Refund&quot;, 3, 0)))#labels number on deposit type
+
+
+resort$family &lt;- ifelse(resort$children &gt; 0 | resort$babies &gt; 0, 1,0)
+
+
+resort_demand &lt;- filter(resort, adr &gt; 20)</code></pre>
 </div>
-<div id="methodology-summary" class="section level3">
-<h3>3. Methodology &amp; Summary</h3>
+<div id="normalization" class="section level2">
+<h2>1.3 Normalization</h2>
+<p>Distance of clusters is highly influenced by scale of variables, it
+is customary to normalize first. In our dataset, all variables are on
+not same scale(0,1), so normalization is necessary:</p>
+</div>
+</div>
+<div id="exploratory-data-analysis-eda" class="section level1">
+<h1>2 Exploratory Data Analysis (EDA)</h1>
+<p>There are 5 variables to figure out marketing strategy: Family &amp;
+Meal Plan &amp; Type of deposit &amp; ADR &amp; Paring space</p>
+<p>Family: the customers brought their kids ?</p>
+<p>*Accompanied kids: 1 &amp; NO accompanied kids: 0</p>
+<p>Meal Plan: what type of meal plan the customers prefered?</p>
+<p>*No plan: 0 &amp; BB(Breakfast and Bed): 1 &amp; FB(Full Board):2
+&amp; HB(Half Board): 3 &amp; SC(Self Catering): 4</p>
+<p>Type of Deposit: What type of deposit the customers chose ?</p>
 <ul>
-<li>LASSO regressions showed the best performance with a cross
-validation RMSE-score of 0.1121. Although there is a lot of
-multicollinearity among the variables, LASSO regression include feature
-selection; it does not select a substantial number of the available
-variables in its model, as it is supposed to do.</li>
-<li>The XGBoost model also performs very well with a cross validation
-RMSE of 0.1162.</li>
-<li>As those two algorithms are very different, averaging predictions is
-likely to improve the predictions. As the Lasso cross validated RMSE is
-better than XGBoost’s CV score, I decided to weight the Lasso results
-double.</li>
+<li>No deposit: 1 &amp; Refundable: 2 &amp; Non Refund:3</li>
 </ul>
-<p><br></p>
+<p>Parking: How many parking spaces were required by customers?</p>
+<p>ADR: Average Daily Rate(Dividing room revenue by rooms sold)</p>
+<div id="how-many-kids-are-accompanied-by-customers"
+class="section level2">
+<h2>2.1 How many kids are accompanied by customers? :</h2>
+<p>About 90% of customers didn’t bring children or babies and few
+customers brought 1 or 2 children</p>
 </div>
-<div id="code" class="section level3">
-<h3>4. Code</h3>
-<p>Please</p>
-<p>click <a
-href="file:///C:/Users/junhy/Documents/Github/rayjkwon.github.io/resort-project.html">HERE</a>
-for the analysis report and code.</p>
-<p><br></p>
+<div id="types-of-deposit" class="section level2">
+<h2>2.2 Types of deposit</h2>
+<p>About 90% of customers chose 1(No Deposit)</p>
+</div>
+<div id="types-of-meal-plan" class="section level2">
+<h2>2.3 Types of Meal plan</h2>
+<p>About 70% of customers chose 1(Breakfast and beds) and about 20% of
+customer chose 3(Half Board) that means including two meals</p>
+</div>
+<div id="average-daily-rate" class="section level2">
+<h2>2.4 Average Daily Rate</h2>
+<p>Each room generates $50 to $100 per a day mostly</p>
+</div>
+</div>
+<div id="elbow-curve" class="section level1">
+<h1>3 Elbow Curve</h1>
+<div id="why-we-need-to-use-elbow-curve" class="section level2">
+<h2>3.1 why we need to use elbow curve ?</h2>
+<p>We need use elbow curve to figure out what is the optimal number of
+cluster. The graph looks like elbow shape and we need to find elbow
+point that is k-value where the elbow gets created. This is because
+increasing the value of “K” does not reduce WCSS(Within-Cluster Sum of
+Square)</p>
+</div>
+<div id="optimal-number-of-cluster" class="section level2">
+<h2>3.2 Optimal number of cluster</h2>
+<p>We choose the elbow point which is 6. Even though we increased the
+k-value, it does not reduce WCSS</p>
+<p><img src="ssasdwdw_files/figure-html/presdf-1.png" width="672" /></p>
+</div>
+</div>
+<div id="result-of-k-mean-clustering" class="section level1">
+<h1>4 Result of K-mean Clustering</h1>
+<div id="size-of-clusters" class="section level2">
+<h2>4.1 Size of Clusters</h2>
+<p>Cluster1: 3,868 Cluster2: 4,627 Cluster3: 5,413 Cluster4: 17,487
+Cluster5: 5,892 Cluster6: 1,892</p>
+</div>
+<div id="insight" class="section level2">
+<h2>4.1 Insight</h2>
+<div id="cluster1-cluster3-show-the-highest-average-daily-rate"
+class="section level3">
+<h3>°Cluster1 &amp; Cluster3 show the highest average daily rate</h3>
+</div>
+<div
+id="all-clusters-chose-no-deposit-except-cluster-6-that-chose-non-refund-option"
+class="section level3">
+<h3>°All clusters chose “No deposit” except cluster 6 that chose “Non
+refund” option</h3>
+</div>
+<div id="customers-in-cluster1-brought-their-kids"
+class="section level3">
+<h3>°Customers in cluster1 brought their kids</h3>
+</div>
+<div
+id="most-customers-in-cluster5-chose-half-board-whereas-most-customers-in-rest-clusters-chose-breakfast-and-bed-option"
+class="section level3">
+<h3>°Most customers in cluster5 chose Half Board, whereas, most
+customers in rest clusters chose “Breakfast and Bed” option</h3>
+</div>
+<div id="cluster2-required-parking-space" class="section level3">
+<h3>°Cluster2 required parking space</h3>
+<pre><code>##       family   meal_num   depo_num         adr required_car_parking_spaces
+## 1  3.0147988  0.1397502 -0.2196305  1.09393220                   0.1735987
+## 2 -0.3280724 -0.1281032 -0.2119857  0.08157423                   2.4684493
+## 3 -0.3316886 -0.4902237 -0.2190932  1.10299525                  -0.3940615
+## 4 -0.3316886 -0.5107956 -0.2208826 -0.62542327                  -0.3951103
+## 5 -0.3316886  1.8924213 -0.2200606  0.21926567                  -0.3951103
+## 6 -0.3243699  0.2667564  4.4699351 -0.51089310                  -0.3951103</code></pre>
+<pre><code>##       family   meal_num   depo_num         adr required_car_parking_spaces
+## 1  3.0147988  0.1397502 -0.2196305  1.09393220                   0.1735987
+## 2 -0.3280724 -0.1281032 -0.2119857  0.08157423                   2.4684493
+## 3 -0.3316886 -0.4902237 -0.2190932  1.10299525                  -0.3940615
+## 4 -0.3316886 -0.5107956 -0.2208826 -0.62542327                  -0.3951103
+## 5 -0.3316886  1.8924213 -0.2200606  0.21926567                  -0.3951103
+## 6 -0.3243699  0.2667564  4.4699351 -0.51089310                  -0.3951103</code></pre>
+<pre><code>## 
+##     1     2     3     4     5     6 
+##  3868  4627  5413 17487  5892  1829</code></pre>
+<pre><code>##           1           2           3           4           5           6 
+## 1.000000000 0.001080614 0.000000000 0.000000000 0.000000000 0.002186987</code></pre>
+<pre><code>##         1         2         3         4         5         6 
+## 163.30238 102.13273 163.85000  59.41386 110.45245  66.33411</code></pre>
+<pre><code>##        1        2        3        4        5        6 
+## 1.000517 1.003674 1.000739 1.000000 1.000339 2.937124</code></pre>
+<pre><code>##         1         2         3         4         5         6 
+## 1.5144778 1.2896045 0.9855902 0.9683193 2.9859131 1.6211044</code></pre>
+<pre><code>##            1            2            3            4            5            6 
+## 0.2003619442 1.0088610331 0.0003694809 0.0000000000 0.0000000000 0.0000000000</code></pre>
+<p><img src="ssasdwdw_files/figure-html/prhgne-1.png" width="672" /></p>
+<p>Note that the <code>echo = FALSE</code> parameter was added to the
+code chunk to prevent printing of the R code that generated the
+plot.</p>
+</div>
 </div>
 </div>
 
 
-<br><br>
-<footer>
-  <p class="copyright text-muted" align="center">Copyright &copy; 2022 John Appleseed</p>
-</footer>
 
-
-</div>
-</div>
 
 </div>
 
@@ -512,35 +537,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3,h4,h5",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = false;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
