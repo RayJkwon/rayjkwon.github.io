@@ -55,11 +55,8 @@ Segmenting all customers using K-mean clustering and then identifying recommenda
 
 ### 4. Code
 
-Please 
+Please click [HERE](file:///C:/Users/junhy/Documents/Github/rayjkwon.github.io/resort-project.html) for the resort analysis report and code.
 
-click [HERE](file:///C:/Users/junhy/Documents/Github/rayjkwon.github.io/resort-project.html) for the resort analysis report and code.
-
-click [HERE](file:///C:/Users/junhy/Documents/Github/rayjkwon.github.io/city.html) for the city hotel analysis report and code.
 
 <br>
 
