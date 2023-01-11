@@ -1,7 +1,7 @@
 
 ---
 title: ""
-author: "John Appleseed"
+author: "Ray Kwon"
 date: 
 output: html_document
 ---
@@ -12,8 +12,8 @@ output: html_document
 
 <br><br><br><br><br><br>
 
-#### **John Appleseed**
-##### M.S. Candidate in Data Science | ABC University <img src="images/college_logo.png" style="width:35%;" align="right">
+#### **Ray Kwon**
+##### M.S. Candidate in Buseinss Analytics | ABC University <img src="images/college_logo.png" style="width:35%;" align="right">
 
 📍 Seoul <br>
 📱 (123) 456 - 7890 <br>

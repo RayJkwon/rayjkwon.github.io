@@ -57,9 +57,9 @@ Segmenting all customers using K-mean clustering and then identifying recommenda
 
 Please 
 
-click [HERE](resort-project.html) for the resort analysis report and code.
+click [HERE](files/resort-project.html) for the resort analysis report and code.
 
-click [HERE](city.html) for the city analysis report and code.
+click [HERE](files/city.html) for the city analysis report and code.
 
 <br>
 
