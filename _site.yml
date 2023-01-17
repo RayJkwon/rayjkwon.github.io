@@ -13,7 +13,7 @@ navbar:
       menu: 
       - text: "Hotel Customer Analytics"
         href: stat1.html
-      - text: "Predicting House Prices in Seattle"
+      - text: "Predicting House Prices in Iowa"
         href: stat2.html
     - text: "DB/SQL"
       menu: 
