@@ -16,13 +16,12 @@ output:
 
 ## **Movie Explorer**
 
-![](https://img.shields.io/badge/Using-R-blue)
 ![](https://img.shields.io/badge/-SQL-red)
-![](https://img.shields.io/badge/-Shiny%20App-success)
+
 
 <br>
 
-🚨**THIS IS A FICTIONAL PROJECT MEANT AS AN EXAMPLE FOR THE STEPBYSTAT COMMUNITY.**
+
 
 <br><br><br>
 
@@ -38,13 +37,13 @@ output:
 
 ### 2. Summary
 
-+ blah blah blah
++ Measured the popularity of three platform variables, for example, international directors, genres and countries by modeling 71,000 datasets using SQL to make recommendations on how to increase revenue  
 
 <br><br><br>
 
-### 3. Live Demo
+### 3. Presentation 
 
-For more insights, please check my Shiny App Live Demo by clicking [HERE](https://shiny.rstudio.com/gallery/movie-explorer.html).
+Please click [HERE](https://uwnetid.sharepoint.com/:p:/r/sites/og_foster_msba_c4_team8/_layouts/15/doc2.aspx?action=edit&sourcedoc=%7Bcd02a3cd-00e0-497f-8c2e-a314d6d8fa4a%7D&wdOrigin=TEAMS-ELECTRON.teamsSdk.openFilePreview&wdExp=TEAMS-CONTROL&web=1) for SQL query and analysis.
 
 
 

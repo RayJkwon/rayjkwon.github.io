@@ -15,7 +15,7 @@ navbar:
         href: stat2.html
     - text: "DB/SQL"
       menu: 
-      - text: "Movie Explorer"
+      - text: "Netflix Analysis"
         href: dbsql1.html
     - text: "Visualization"
       menu: 
