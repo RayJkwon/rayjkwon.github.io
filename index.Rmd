@@ -17,7 +17,7 @@ output: html_document
 <br><br><br>
 👋🏽 Hello, my name is Jun Hyeok (Ray) Kwon.
 
-🎓 Soon to be grad with a M.S. in Business Analytics at University of Washington Seattle. (June 2023)
+🎓 Soon to be grad with a M.S. in Business Analytics, University of Washington Seattle. (June 2023)
 
 🌇 Korean Native, with a passion for developing and applying mathematical and statistical models to hands-on strategies that will grow business.
 
@@ -28,10 +28,6 @@ I have experience in stock analytics and business consulting. I analyzed Korean 
 💻 **Talk about what you want to do in the future (2 sentences)**
 
 💻 As for my future, I hope to one day work as a Business Intelligence Analyst/Engineer or a Data Analyst.
-
-🏔 **Talk about hobbies(1 sentence)**
-
-🏔 In my free time, I like watching TV show and Movies.
 
 💪 **Highlight My Skill**
 

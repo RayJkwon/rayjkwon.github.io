@@ -13,8 +13,8 @@ output: html_document
 <br><br><br><br><br><br>
 
 #### **Ray Kwon**
-##### M.S. Candidate in Buseinss Analytics | ABC University <img src="images/college_logo.png" style="width:35%;" align="right">
+##### M.S. Candidate in Buseinss Analytics | University of Washington Seattle <img src="images/college_logo.png" style="width:35%;" align="right">
 
-📍 Seoul <br>
-📱 (123) 456 - 7890 <br>
-✉️ [jappleseed@abc.edu](mailto:jappleseed@abc.edu) <br>
+📍 Seattle <br>
+📱 (206) 756 - 8945 <br>
+✉️ [jkwon32@uw.edu](mailto:jkwon32@uw.edu) <br>
