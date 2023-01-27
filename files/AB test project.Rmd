@@ -1,0 +1,383 @@
+---
+title: "E-commerce AB test"
+author: "Ray Kwon"
+date: "2022-12-12"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float:
+     collapsed: true
+     smooth_scroll: true
+---
+
+```{r setup, include=FALSE}
+rm(list = ls())
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 1 Introduction
+
+### 1.1 Problem Statement
+
+#### Will a new photo result in more button clicks, compared to a current photo?
+
+### 1.2 Goal
+
+#### Our objective is to determine the photograph that leads to a higher proportion of button clicks.
+
+### 1.3 Hypothesis Testing
+
+#### The null hypothesis states that there is no significant difference in the click through rate between the two groups being compared, while the alternative hypothesis suggests that there is a significant difference in the click through rate between the two groups. The test is conducted to determine which hypothesis is true. If the test results reject the null hypothesis and accept the alternative hypothesis, it means that there is a significant difference in the click through rate between the two groups.
+
+$$
+\begin{array}{c}H_{0}: \pi_{A}=\pi_{B} \\ \text { vs. } \\ H_{a}: \pi_{A}=\pi_{B}\end{array}
+$$
+
+# 2 Exploratory Data Analysis(EDA)
+
+```{r warning=F, message=F}
+library(lubridate)
+library(dplyr)
+library(ggplot2)
+library(RColorBrewer)
+# display.brewer.all()
+library(patchwork)
+library(tidyverse)
+library(powerMediation)
+library(gghighlight)
+library(flextable)
+
+
+
+
+
+click_data <- read.csv("click_data.csv")
+
+
+click_data$click_month <- month(click_data$visit_date)
+
+click_data$click_quarter <-  ifelse(click_data$click_month %in% c(1,2,3),'Q1',ifelse(click_data$click_month %in% c(4,5,6),'Q2',ifelse(click_data$click_month %in% c(7,8,9),'Q3','Q4')))
+
+click_data$click_season <-  ifelse(click_data$click_month %in% c(12,1,2),'Winter',ifelse(click_data$click_month %in% c(3,4,5),'Spring',ifelse(click_data$click_month %in% c(6,7,8),'Summer','Autumn')))
+
+total_click_by_month <- click_data %>%
+  group_by(click_month) %>%
+  summarise(total = sum(clicked_adopt_today))
+
+
+click_rate_by_month <- click_data %>%
+  group_by(click_month) %>%
+  summarise(click_per_rate = mean(clicked_adopt_today))
+
+
+total_click_by_quarter <- click_data %>%
+  group_by(click_quarter) %>%
+  summarise(total = sum(clicked_adopt_today))
+
+click_rate_by_quarter <- click_data %>%
+  group_by(click_quarter) %>%
+  summarise(click_per_rate = mean(clicked_adopt_today))
+
+
+total_click_by_season <- click_data %>%
+  group_by(click_season) %>%
+  summarise(total = sum(clicked_adopt_today))
+
+click_rate_by_season <- click_data %>%
+  group_by(click_season) %>%
+  summarise(click_per_rate = mean(clicked_adopt_today))
+
+
+month <- data.frame(month = total_click_by_month$click_month, total =  total_click_by_month$total, click_rate = click_rate_by_month$click_per_rate)
+season <- data.frame(season = total_click_by_season$click_season, total =  total_click_by_season$total, click_rate_s = click_rate_by_season$click_per_rate)
+quarters <- data.frame(quarter = total_click_by_quarter$click_quarter, total =  total_click_by_quarter$total, click_rate = click_rate_by_quarter$click_per_rate)
+
+
+
+month_plot<- ggplot(month, aes(x=month, y=click_rate))+geom_bar(stat="identity",  color="antiquewhite2", fill = "antiquewhite2")+xlim('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec')+geom_text(aes(label=round(click_rate, digits = 2)), vjust = 1.6)
+  
+
+season_plot<- ggplot(season, aes(x=season, y=click_rate_s)) +
+  geom_bar(stat="identity",  color="aquamarine3", fill = "aquamarine3")+geom_text(aes(label=round(click_rate_s, digits = 2)), vjust = 1.6)
+
+
+quarter_plot <- ggplot(quarters, aes(x=quarter, click_rate))+geom_bar(stat="identity", color= "azure3", fill = "azure3")+geom_text(aes(label=round(click_rate, digits = 2)), vjust = 1.6)
+```
+
+### 2.1 Total Number of button clicks by month
+
+#### The number of button clicks were the highest in August. However, the number of button clicks rate showed lowest in March and April
+
+### 2.2 Total Number of button clicks by quarters
+
+#### There were 364 button clicks which were the highest in Quarter3, because the rate was the highest in August, but the button clicks rate showed lowest in first quarter
+
+### 2.3 Total Number of button clicks by seasons
+
+#### In summer, the number of button clicks were highest, but the button clicks rate showed lowest in spring because of March and April
+
+```{r warning=F, message=F}
+
+month_plot+labs(y= "Click Rate", x = "Month")+ggtitle("Conversion Rate by Month")+theme(plot.title = element_text(hjust = 0.5))
+
+quarter_plot+labs(y= "Click Rate", x = "Quarters")+ggtitle("Conversion Rate by Quarters")+theme(plot.title = element_text(hjust = 0.5))
+
+season_plot+labs(y= "Click Rate", x = "Season")+ggtitle("Conversion Rate by Season")+theme(plot.title = element_text(hjust = 0.5))  
+ 
+
+```
+
+# 3 Comparison between Control and Test
+
+#### test data shows higher conversion rate than control except few days (Jan 04,15,20,23,27)
+
+```{r}
+
+#A Comparsion between Control and Test
+
+options(dplyr.summarise.inform = FALSE)
+
+experiment_data <- read.csv("experiment_data.csv")
+
+
+click_data_month_conversionrate <-  experiment_data %>%
+    group_by(visit_date, condition) %>%
+    dplyr::summarise(conversion_rate = mean(clicked_adopt_today))
+
+
+ggplot(click_data_month_conversionrate, aes(x = visit_date, 
+                                            y = conversion_rate, 
+                                            color = condition, 
+                                            group = condition)) +
+    geom_point() +
+    geom_line()+  scale_x_discrete(labels = unique(substr(x = click_data_month_conversionrate$visit_date, start = 9, stop = 10))
+)+labs(y= "Conversion Rate", x = "Dates in January 2018 ")+ggtitle("A Comparsion between Control and Test ")+theme(plot.title = element_text(hjust = 0.5))
+
+
+
+
+```
+
+# 4 Power Analysis
+
+### 4.1 Optimal Sample Size
+
+#### Given that the marketing budget can afford to 1,000 sample, the optimal sample is 952 based on power analysis. As the minimum detectable difference is about 0.084, so the mean of current photo click-through rate must be 0.36 at least
+
+```{r}
+#power analysis
+
+#url <- "https://assets.datacamp.com/production/repositories/2292/datasets/52b52cb1ca28ce10f9a09689325c4d94d889a6da/experiment_data.csv"
+
+
+
+my_list <- list()
+
+sample_prop <- seq(0.3, 0.5, by = 0.02)
+sample_size <- c()
+
+
+for (i in 1:length(sample_prop)){sample_size[i] <- SSizeLogisticBin(p1 = mean(experiment_data$clicked_adopt_today), p2 = sample_prop[i], B = 0.5, alpha = 0.05, power = 0.8)}
+
+
+power_analysis <- data.frame(`Conversion.Rate.Difference` = sample_prop-mean(experiment_data$clicked_adopt_today), Sample.Size = sample_size)
+
+
+ggplot(power_analysis,aes(x=Sample.Size, y=Conversion.Rate.Difference))+geom_point(col = "springgreen3", size = 4)+gghighlight(Sample.Size == 952, label_key = Sample.Size )+labs(y= "Conversion.Rate.Difference", x = "Sample Size ")+ggtitle("Optimal Sample Size ")
+
+ft<- flextable(power_analysis)
+#ft<- set_caption(ft, caption = "Optimal Sample Size by CTR difference")
+
+ft
+
+
+
+```
+
+# 5 A/A testing
+
+## 5.1 Goal
+
+#### test to check that the tools being used to run the experiment is statistically fair to test
+
+## 5.2 Transform
+
+#### Transform the data to better fit normal distribution. However, log, square root, and asin do not transform to better fit, so wilcoxon rank sum test is optimal test
+
+```{r fig.width = 8, fig.height=16}
+#A/A testing -- Sqrt, Log - normal distribution x --> wilcox
+
+photo2017 <- click_data %>%
+  group_by(visit_date) %>%
+  summarise(click_day = mean(clicked_adopt_today))
+
+photo2018 <- filter(click_data_month_conversionrate, condition =='control')
+photo2017_jan <- filter(photo2017, month(photo2017$visit_date) == 1)
+
+
+
+par(mfrow = c(4, 2))
+
+hist(photo2017_jan$click_day, main = ("Histogram of 2017 Conversion Rate"), xlab = "Conversion Rate")
+hist(photo2018$conversion_rate, main = ("Histogram of 2018 Conversion Rate"), xlab = "Conversion Rate")
+
+
+hist(sqrt(photo2017$click_day), main = ("Histogram of Square Root of 2017 Conversion Rate"), xlab = "Square Root of Conversion Rate")
+hist(sqrt(photo2018$conversion_rate), main = ("Histogram of Square Root of 2018 Conversion Rate"), xlab = "Square Root of Conversion Rate")
+
+
+hist(log(photo2017$click_day+0.0001), main = ("Histogram of Log of 2017 Conversion Rate"), xlab = "Log of Conversion Rate")
+hist(log(photo2018$conversion_rate+0.0001),  main = ("Histogram of Log of 2018 Conversion Rate"), xlab = "Log of Conversion Rate")
+
+
+hist(asin(photo2017$click_day), main = ("Histogram of Asin of 2017 Conversion Rate"), xlab = "Log of Conversion Rate")
+hist(asin(photo2018$conversion_rate), main = ("Histogram of Asin of 2018 Conversion Rate"), xlab = "Log of Conversion Rate")
+
+
+
+
+
+
+
+
+mean(photo2017_jan$click_day)
+mean(photo2018$conversion_rate)
+
+wilcox.test(photo2018$conversion_rate,photo2017_jan$click_day)
+```
+
+### 5.3 Result
+
+#### There is no difference in conversions between the 2017 control and 2018 control, so the tools are statistically fair to experiment
+
+### 5.4 Comparison between 2017 conversion rate and 2018 conversion rate
+
+```{r}
+
+photo2017_jan <- filter(photo2017, month(visit_date) == 1)
+
+photo2018$day <- day(photo2018$visit_date)
+
+ggplot(photo2017_jan, aes(x=day(visit_date), y=click_day))+geom_bar(stat="identity", color= "lightsalmon2", fill = "lightsalmon2")+labs(y= "Conversion Rate", x = "Date in January 2017")+ggtitle("Conversion rate in January 2017")+theme(plot.title = element_text(hjust = 0.5))+geom_text(aes(label=round(click_day, digits = 2)), vjust= -0.7, size = 3)
+
+ggplot(photo2018, aes(x=day, y=conversion_rate))+geom_bar(stat="identity", color= "lightslateblue", fill = "lightslateblue")+labs(y= "Conversion Rate", x = "Date in January 2018")+ggtitle("Conversion rate in January 2018")+theme(plot.title = element_text(hjust = 0.5))+geom_text(aes(label=round(conversion_rate, digits = 1)), vjust= -0.7, size = 3)
+```
+
+# 6 A/B Testing
+
+## 6.1 Data Pre-processing
+
+```{r}
+
+
+#A/B test
+
+
+
+
+#tips
+tips <- read.csv("data_viz_website_2018_04.csv") %>%
+    filter(condition == "tips")
+
+article_tips <- tips %>%
+  group_by(visit_date)%>%
+  summarise(mean_article = mean(clicked_article))
+
+
+like_tips <- tips %>%
+  group_by(visit_date)%>%
+  summarise(mean_like = mean(clicked_like))
+
+share_tips <-tips%>%
+  group_by(visit_date)%>%
+  summarise(mean_share = mean(clicked_share))
+
+time_tips <- tips %>%
+  group_by(visit_date)%>%
+  summarise(mean_time = mean(time_spent_homepage_sec))
+
+
+
+#tools
+
+tools <- read.csv("data_viz_website_2018_04.csv") %>%
+    filter(condition == "tools")
+
+article_tools <- tools %>%
+  group_by(visit_date)%>%
+  summarise(mean_article = mean(clicked_article))
+
+
+like_tools <-tools%>%
+  group_by(visit_date)%>%
+  summarise(mean_like = mean(clicked_like))
+
+share_tools <-tools%>%
+  group_by(visit_date)%>%
+  summarise(mean_share = mean(clicked_share))
+
+time_tools <-tools%>%
+  group_by(visit_date)%>%
+  summarise(mean_time = mean(time_spent_homepage_sec))
+```
+
+## 6.2 Checking for normality
+
+```{r fig.width = 8, fig.height=16}
+
+par(mfrow = c(4, 2))
+
+hist(article_tips$mean_article,breaks = "FD", main = ("Histogram of Tip: Clicked Article"), xlab = "Clicked Article Rate")
+hist(like_tips$mean_like      ,breaks = "FD", main = ("Histogram of Tip: Clicked Like"), xlab = "Clicked Like Rate")
+hist(share_tips$mean_share    ,breaks = "FD", main = ("Histogram of Tip: Clicked Share"), xlab = "Clicked Share Rate")
+hist(time_tips$mean_time      ,breaks = "FD", main = ("Histogram of Tip: Spending time on homepage"), xlab = "Spent time(sec)")
+
+
+hist(article_tools$mean_article, breaks = "FD", main = ("Histogram of Tool: Clicked Article"), xlab = "Clicked Article Rate")
+hist(like_tools$mean_like      , breaks = "FD", main = ("Histogram of Tool: Clicked Like"), xlab = "Clicked Like Rate")
+hist(share_tools$mean_share    , breaks = "FD", main = ("Histogram of Tool: Clicked Share"), xlab = "Clicked Share Rate")
+hist(time_tools$mean_time      , breaks = "FD", main = ("Histogram of Tool: Spending time on homepage"), xlab = "Spent time(sec)")
+```
+
+## 6.3 Result
+
+#### There is statistically significant relationship in click-though(like) rate between current photo and new photo. Beside that, there is not statically significant.
+
+```{r}
+
+#clicked_article 
+t.test(tips$clicked_article,tools$clicked_article)
+
+#clicked_share
+t.test(tips$clicked_share,tools$clicked_share)
+
+#clicked_like
+t.test(tips$clicked_like,tools$clicked_like)
+
+#clicked_time
+t.test(tips$time_spent_homepage_sec,tools$time_spent_homepage_sec)
+
+
+```
+
+# 7 Logistic Regression
+
+```{r pressure, echo=FALSE, warning=F, message=FALSE}
+
+fit <- glm(clicked_adopt_today ~ condition, family = "binomial", data = experiment_data)
+summary(fit)
+#exp(cbind(Estimate = coef(fit), confint(fit))) %>%
+    #as.data.frame() %>%
+    #round(4) %>%
+    #tibble::rownames_to_column("Coefficients") %>%
+    #flextable()
+
+table(experiment_data$condition, experiment_data$clicked_adopt_today)
+  
+  
+```
+
+## 7.1 Result
+
+#### The clicked adopt today through rate in the test group is 3.1 times higher than that of the control group, and the result was significant (P\<0.001). Therefore, new photo can attract more customers than current photo can

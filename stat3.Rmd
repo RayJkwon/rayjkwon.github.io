@@ -1,0 +1,59 @@
+---
+pagetitle: "Stat3"
+output:
+  html_document:
+    toc: true
+    toc_depth: 5
+    toc_float:
+     collapsed: false
+     smooth_scroll: false
+---
+
+<link rel="stylesheet" href="styles.css" type="text/css">
+<link rel="stylesheet" href="site_libs/academicons-1.9.1/css/academicons.min.css"/>
+
+<br><br><br>
+
+## **E-commerce AB test**
+
+![](https://img.shields.io/badge/Using-R-blue)
+![](https://img.shields.io/badge/-ABtest-red)
+
+
+<br>
+
+
+<br><br><br>
+
+### 1. Figure
+
+<p align="center">
+<img src="images/abtest.png" style="width:80%; border:0px solid; margin-right: 20px" align="center">
+</p>
+<p align="center">
+[Fig. Comparison of Advertising Photo Conversion Rate]
+</p>
+
+
+<br>
+
+<br><br>
+
+### 2. Goal
+Determine the photograph that leads to a higher proportion of button clicks 
+
+<br>
+
+### 3. Methodology & Summary
+
+  + Examined the better performance of click rate between two E-commerce advertising campaigns which are current and new photos by analyzing 13,000 datasets using A/B testing and logistic regression with R
+  
+<br>
+
+### 4. Code
+
+Please click [HERE](files/AB-test-project.html) for the analysis report and code.
+
+<br>
+
+

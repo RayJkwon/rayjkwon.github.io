@@ -13,6 +13,8 @@ navbar:
         href: stat1.html
       - text: "Predicting House Prices in Iowa"
         href: stat2.html
+      - text: "E-commerce AB test"
+        href: stat3.html
     - text: "DB/SQL"
       menu: 
       - text: "Netflix Analysis"
