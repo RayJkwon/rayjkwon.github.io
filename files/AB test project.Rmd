@@ -380,4 +380,4 @@ table(experiment_data$condition, experiment_data$clicked_adopt_today)
 
 ## 7.1 Result
 
-#### The clicked adopt today through rate in the test group is 3.1 times higher than that of the control group, and the result was significant (P\<0.001). Therefore, new photo can attract more customers than current photo can
+#### The clicked adopt today through rate in the test group is 3.1 times higher than that of the control group, and the result was significant (P\<0.001). Therefore, new photo can attract more customers than current photo can attract
