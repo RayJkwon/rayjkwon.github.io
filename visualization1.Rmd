@@ -14,13 +14,12 @@ output:
 
 <br><br><br>
 
-## **Squid Game Elimination Analysis**
+## **INC5000 Analysis**
 
 ![](https://img.shields.io/badge/Using-Tableau%20Software-red)
 
 <br>
 
-🚨**THIS IS A FICTIONAL PROJECT MEANT AS AN EXAMPLE FOR THE STEPBYSTAT COMMUNITY.**
 
 <br><br><br>
 
@@ -36,16 +35,15 @@ output:
 
 ### 2. Summary
 
-+ Squid Game is a South Korean survival drama television series streaming on Netflix.
-+ The series runs a contest where 456 players, and all of them are in debt, thereby playing multiple different types of children's games.
-+ The players soon realize that being eliminated means death, and prize money accrued as more and more people die.
-+ Game 1 an extremely lethl version of Red Light, Green Light, where anyone caught moving is shot dead on the spot. It generated the most casualites, 255 people, as `elimination=death` rule was not informed to the players beforehand.
++ California is the best state for the fastest-growing private companies.
++ Most companies and workers are located in California. 
++ The companies in California generate the highest revenue, compared to companies in other states.
 
 <br><br><br>
 
 ### 3. Tableau Public
 
-For more insights, please check my Tableau Public by clicking [HERE](https://public.tableau.com/app/profile/davidhoskins/viz/SquidGameWARNINGMAJORSPOILERS/SquidGame).
+For more insights, please check my Tableau Public by clicking [HERE](https://public.tableau.com/views/incstory/Story1?:language=en-US&:display_count=n&:origin=viz_share_link).
 
 
 
