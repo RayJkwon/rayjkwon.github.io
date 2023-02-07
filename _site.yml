@@ -21,7 +21,7 @@ navbar:
         href: dbsql1.html
     - text: "Visualization"
       menu: 
-      - text: "Inc.5000 Analysis"
+      - text: "inc.5000 Analysis"
         href: visualization1.html
   right:
     - icon: fas fa-envelope
