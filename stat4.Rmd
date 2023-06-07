@@ -1,0 +1,59 @@
+---
+pagetitle: "Stat4"
+output:
+  html_document:
+    toc: true
+    toc_depth: 5
+    toc_float:
+     collapsed: false
+     smooth_scroll: false
+---
+
+<link rel="stylesheet" href="styles.css" type="text/css">
+<link rel="stylesheet" href="site_libs/academicons-1.9.1/css/academicons.min.css"/>
+
+<br><br><br>
+
+## **T-Mobile Media Analytics**
+
+![](https://img.shields.io/badge/Using-SQL-blue)
+![](https://img.shields.io/badge/-Python-red)
+
+
+<br>
+
+
+<br><br><br>
+
+### 1. Figure
+
+<p align="center">
+<img src="images/Tmobile.png" style="width:80%; border:0px solid; margin-right: 20px" align="center">
+</p>
+<p align="center">
+[Fig. Year on Year increase for Enterprise Value & Media Spending]
+</p>
+
+
+<br>
+
+<br><br>
+
+### 2. Goal
+Make recommendations on how does the T-Mobile continue to grow, and what are some markets and advertising channels to invest in
+
+<br>
+
+### 3. Methodology & Summary
+
+  +  Performed EDA, kNN clustering, RFM Analysis, Log-Log regression, customer analysis to dive deep into markets based on population, coverage, market share and then analyze channel and tactic effectiveness​
+  
+<br>
+
+### 4. Code
+
+Please click [HERE](https://uwnetid-my.sharepoint.com/:p:/g/personal/pkamal09_uw_edu/EdPwSs5dkVxAhfjWIgesfO4BOTpi-CZFb3HuMwGS1Xo4wQ?wdOrigin=TEAMS-ELECTRON.p2p.p2p&wdExp=TEAMS-CONTROL&wdhostclicktime=1686154843824&web=1) for the analysis report and code.
+
+<br>
+
+

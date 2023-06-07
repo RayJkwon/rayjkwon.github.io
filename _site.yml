@@ -15,6 +15,8 @@ navbar:
         href: stat2.html
       - text: "E-commerce AB test"
         href: stat3.html
+      - text: "T-Mobile Media Analytics"
+        href: stat4.html
     - text: "DB/SQL"
       menu: 
       - text: "Netflix Analysis"

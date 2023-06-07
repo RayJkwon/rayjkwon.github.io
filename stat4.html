@@ -11,7 +11,7 @@
 
 
 
-<title>Index</title>
+<title>Stat4</title>
 
 <script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -222,6 +225,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -229,6 +301,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -328,35 +410,48 @@ $(document).ready(function () {
 
 <p><link rel="stylesheet" href="styles.css" type="text/css">
 <link rel="stylesheet" href="site_libs/academicons-1.9.1/css/academicons.min.css"/></p>
+<p><br><br><br></p>
+<div id="t-mobile-media-analytics" class="section level2">
+<h2><strong>T-Mobile Media Analytics</strong></h2>
+<p><img src="https://img.shields.io/badge/Using-SQL-blue" /> <img
+src="https://img.shields.io/badge/-Python-red" /></p>
 <p><br></p>
+<p><br><br><br></p>
+<div id="figure" class="section level3">
+<h3>1. Figure</h3>
 <p align="center">
-<img src="images/profile_pic.png" style="width:50%; border:0.5px solid; margin-right: 20px" align="center">
+<img src="images/Tmobile.png" style="width:80%; border:0px solid; margin-right: 20px" align="center">
+</p>
+<p align="center">
+[Fig. Year on Year increase for Enterprise Value &amp; Media Spending]
 </p>
 <p><br></p>
-<p><br><br><br> 👋🏽 Hello, my name is Jun Hyeok (Ray) Kwon.</p>
-<p>🎓 Soon to be grad with a M.S. in Business Analytics, University of
-Washington Seattle. (June 2023)</p>
-<p>🌇 Korean Native, with a passion for developing and applying
-mathematical and statistical models to hands-on strategies that will
-grow business.</p>
-<p>📚 <strong>Talk about your past experience, your present experience,
-and what you did (about 4-5 sentences)</strong></p>
-<p>I have experience in stock analytics and business consulting. I
-analyzed Korean and global financial markets and provided market reports
-to clients. I have worked in Makeasy which is a consulting firm. I
-analyzed the market and trade-related data and matched potential foreign
-buyers for clients</p>
-<p>💻 <strong>Talk about what you want to do in the future (2
-sentences)</strong></p>
-<p>💻 As for my future, I hope to one day work as a Business
-Intelligence Analyst/Engineer or a Data Analyst.</p>
-<p>💪 <strong>Highlight My Skill</strong></p>
+<p><br><br></p>
+</div>
+<div id="goal" class="section level3">
+<h3>2. Goal</h3>
+<p>Make recommendations on how does the T-Mobile continue to grow, and
+what are some markets and advertising channels to invest in</p>
+<p><br></p>
+</div>
+<div id="methodology-summary" class="section level3">
+<h3>3. Methodology &amp; Summary</h3>
 <ul>
-<li>Programming: Python, R</li>
-<li>Data visualization: Tableau Software, Power BI</li>
-<li>Database: MySQL, Postgre</li>
-<li>ETL: Microsoft SQL Server Integration Services</li>
+<li>Performed EDA, kNN clustering, RFM Analysis, Log-Log regression,
+customer analysis to dive deep into markets based on population,
+coverage, market share and then analyze channel and tactic
+effectiveness​</li>
 </ul>
+<p><br></p>
+</div>
+<div id="code" class="section level3">
+<h3>4. Code</h3>
+<p>Please click <a
+href="https://uwnetid-my.sharepoint.com/:p:/g/personal/pkamal09_uw_edu/EdPwSs5dkVxAhfjWIgesfO4BOTpi-CZFb3HuMwGS1Xo4wQ?wdOrigin=TEAMS-ELECTRON.p2p.p2p&amp;wdExp=TEAMS-CONTROL&amp;wdhostclicktime=1686154843824&amp;web=1">HERE</a>
+for the analysis report and code.</p>
+<p><br></p>
+</div>
+</div>
 
 
 <br><br>
@@ -365,6 +460,8 @@ Intelligence Analyst/Engineer or a Data Analyst.</p>
 </footer>
 
 
+</div>
+</div>
 
 </div>
 
@@ -397,6 +494,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4,h5",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = false;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
