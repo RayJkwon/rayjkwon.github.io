@@ -29,7 +29,7 @@ navbar:
     - icon: fas fa-envelope
       href: contact.html
     - icon: ai-cv ai-lg
-      href: files/Resume_Junhyeok(Ray)Kwon.pdf
+      href: files/Resume_JunhyeokKwon.pdf
     - icon: fab fa-github
       href: http://github.com/RayJkwon
     - icon: fab fa-linkedin-in
