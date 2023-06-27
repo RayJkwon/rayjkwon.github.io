@@ -17,15 +17,13 @@ output: html_document
 <br><br><br>
 👋🏽 Hello, my name is Jun Hyeok (Ray) Kwon.
 
-🎓 Soon to be grad with a M.S. in Business Analytics, University of Washington Seattle. (June 2023)
+🎓 Grad with a M.S. in Business Analytics, University of Washington Seattle. (June 2023)
 
 🌇 Korean Native, with a passion for developing and applying mathematical and statistical models to hands-on strategies that will grow business.
 
-📚 **Talk about your past experience, your present experience, and what you did (about 4-5 sentences)**
 
-I have experience in stock analytics and business consulting. I analyzed Korean and global financial markets and provided market reports to clients. I have worked in Makeasy which is a consulting firm. I analyzed the market and trade-related data and matched potential foreign buyers for clients
+📚 I have experience in stock analytics and business consulting. I analyzed Korean and global financial markets and provided market reports to clients. I have worked in Makeasy which is a consulting firm. I analyzed the market and trade-related data and matched potential foreign buyers for clients
 
-💻 **Talk about what you want to do in the future (2 sentences)**
 
 💻 As for my future, I hope to one day work as a Business Intelligence Analyst/Engineer or a Data Analyst.
 
@@ -33,8 +31,8 @@ I have experience in stock analytics and business consulting. I analyzed Korean 
 
 + Programming: Python, R
 + Data visualization: Tableau Software, Power BI
-+ Database: MySQL, Postgre 
-+ ETL: Microsoft SQL Server Integration Services 
++ Database: MySQL, PostgreSQL 
++ ETL: PySpark, Apache Spark
 
 
 
